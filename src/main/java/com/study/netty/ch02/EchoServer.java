@@ -11,10 +11,9 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-
 import java.net.InetSocketAddress;
-import java.nio.channels.SocketChannel;
 
 /**
  * 功能描述: XXXX
@@ -48,16 +47,15 @@ public class EchoServer {
             b.group(group)
                     .channel(NioServerSocketChannel.class)
                     .localAddress(new InetSocketAddress(port))
-                   /* .childHandler(new ChannelInitializer<SocketChannel>() {
+                    .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         public void initChannel(SocketChannel ch) throws Exception {
-                            // TODO
+                            ch.pipeline().addLast(serverHandler);
                         }
-                    })*/;
+                    });
 
             ChannelFuture f = b.bind().sync();
             f.channel().closeFuture().sync();
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
