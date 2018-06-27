@@ -31,12 +31,12 @@ public class EchoServer {
         this.port = port;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         if (args.length != 1) {
             System.out.println("Usage: "+ EchoServer.class.getSimpleName() +" <port>");
         }
         int port = Integer.parseInt(args[0]);
-        new EchoServer(port);
+        new EchoServer(port).start();
     }
 
     public void start() throws Exception {
