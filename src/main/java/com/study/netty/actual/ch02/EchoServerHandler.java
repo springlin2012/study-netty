@@ -4,7 +4,7 @@
  * @author chunlin.li
  *
  */
-package com.study.netty.ch02;
+package com.study.netty.actual.ch02;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

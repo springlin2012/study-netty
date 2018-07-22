@@ -4,7 +4,7 @@
  * @author chunlin.li
  *
  */
-package com.study.netty.ch02;
+package com.study.netty.actual.ch02;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
@@ -64,7 +64,7 @@ public class EchoClient {
         }
 
         ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
-        for (int i=1; i<=10; i++) {
+        for (int i=1; i<=1; i++) {
             final String number = String.valueOf(i);
             cachedThreadPool.execute(new Runnable() {
                 @Override
