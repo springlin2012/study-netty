@@ -30,7 +30,9 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         // super.channelRead(ctx, msg);
         ByteBuf in = (ByteBuf) msg;
-        System.out.println("Server received:"+ in.toString(CharsetUtil.UTF_8));
+        System.out.println("Server received: "+ in.toString(CharsetUtil.UTF_8));
+
+        in.writeBytes(" append byte SUCCESS".getBytes());
         ctx.write(in);
     }
 

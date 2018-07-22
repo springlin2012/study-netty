@@ -16,7 +16,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import java.net.InetSocketAddress;
 
 /**
- * 功能描述: XXXX
+ * 功能描述: Netty实现服务端
  * <p/>
  * 创建人: chunlin.li
  * <p/>

@@ -10,6 +10,8 @@
     <packaging>jar</packaging>
 
     <properties>
+        <!-- maven错误解决：编码GBK的不可映射字符 -->
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <version>1.0.0</version>
         <netty.version>4.1.9.Final</netty.version>
     </properties>
@@ -29,5 +31,29 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+
+    <build>
+        <plugins>
+            <!-- maven错误解决：编码GBK的不可映射字符 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+            </plugin>
+        </plugins>
+    </build>
+
 
 </project>

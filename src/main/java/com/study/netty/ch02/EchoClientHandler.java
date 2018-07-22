@@ -25,10 +25,16 @@ import io.netty.util.CharsetUtil;
 @ChannelHandler.Sharable
 public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
+    private final String number;
+
+    public EchoClientHandler(String number) {
+        this.number = number;
+    }
+
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
 //        super.channelActive(ctx);
-        ctx.writeAndFlush(Unpooled.copiedBuffer("Netty rocks!", CharsetUtil.UTF_8));
+        ctx.writeAndFlush(Unpooled.copiedBuffer("number: "+ number +" Netty rocks!", CharsetUtil.UTF_8));
     }
 
     @Override

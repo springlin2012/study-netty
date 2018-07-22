@@ -15,9 +15,11 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.net.InetSocketAddress;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
- * 功能描述: XXXX
+ * 功能描述: 多线程Netty客户端
  * <p/>
  * 创建人: chunlin.li
  * <p/>
@@ -34,7 +36,7 @@ public class EchoClient {
         this.port = port;
     }
 
-    public void start() throws Exception {
+    public void start(final String number) throws Exception {
         EventLoopGroup group = new NioEventLoopGroup();
         try {
             Bootstrap b = new Bootstrap();
@@ -44,7 +46,7 @@ public class EchoClient {
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(new EchoClientHandler());
+                            ch.pipeline().addLast(new EchoClientHandler(number));
                         }
                     });
             ChannelFuture f = b.connect().sync();
@@ -55,14 +57,25 @@ public class EchoClient {
 
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(final String[] args) throws Exception {
         if (args.length != 2) {
             System.out.println("Usage: "+ EchoClient.class.getSimpleName() + "<host> <port>");
             return;
         }
 
-        String host = args[0];
-        int port = Integer.parseInt(args[1]);
-        new EchoClient(host, port).start();
+        ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
+        for (int i=1; i<=10; i++) {
+            final String number = String.valueOf(i);
+            cachedThreadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        new EchoClient(args[0], Integer.parseInt(args[1])).start(number);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
     }
 }
