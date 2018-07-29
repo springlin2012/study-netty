@@ -37,15 +37,16 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
         ctx.writeAndFlush(Unpooled.copiedBuffer("number: "+ number +" Netty rocks!", CharsetUtil.UTF_8));
     }
 
-    @Override
-    protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
-        System.out.println("Client received: "+ msg.toString(CharsetUtil.UTF_8));
-    }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
 //        super.exceptionCaught(ctx, cause);
         cause.printStackTrace();
         ctx.close();
+    }
+
+    @Override
+    protected void messageReceived(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
+
     }
 }
