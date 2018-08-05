@@ -32,21 +32,12 @@ public class PlainOioServer {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        InputStream input;
                         OutputStream out;
                         try {
-                            input = clientSocket.getInputStream();
-                            /*byte[] bytes = new byte[100];
-                            while (input.read() > 1) {
-                                input.read(bytes);
-                            }
-                            System.out.println("Client input: "+ bytes.toString());*/
-
                             out = clientSocket.getOutputStream();
                             out.write("Hi! \r\n".getBytes(Charset.forName("UTF-8")));
                             out.flush();
 
-                            input.close();
                             out.close();
                             clientSocket.close();
                         } catch (Exception e) {

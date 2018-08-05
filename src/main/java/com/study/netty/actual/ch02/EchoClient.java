@@ -63,7 +63,13 @@ public class EchoClient {
             return;
         }
 
-        ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
+        try {
+            new EchoClient(args[0], Integer.parseInt(args[1])).start("1");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        /*ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
         for (int i=1; i<=1; i++) {
             final String number = String.valueOf(i);
             cachedThreadPool.execute(new Runnable() {
@@ -76,6 +82,6 @@ public class EchoClient {
                     }
                 }
             });
-        }
+        }*/
     }
 }
