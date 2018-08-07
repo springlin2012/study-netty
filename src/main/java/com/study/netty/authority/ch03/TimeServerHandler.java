@@ -22,7 +22,7 @@ import io.netty.channel.ChannelHandlerContext;
  */
 public class TimeServerHandler extends ChannelHandlerAdapter {
 
-    @Override
+   /* @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 //        super.channelRead(ctx, msg);
         ByteBuf buf = (ByteBuf) msg;
@@ -34,13 +34,13 @@ public class TimeServerHandler extends ChannelHandlerAdapter {
                 ? new java.util.Date(System.currentTimeMillis()).toString() : "BAD ORDER";
         ByteBuf resp = Unpooled.copiedBuffer(currentTime.getBytes());
         ctx.write(resp);
-    }
+    }*/
 
-    @Override
+ /*   @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
 //        super.channelReadComplete(ctx);
         ctx.flush();
-    }
+    }*/
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {

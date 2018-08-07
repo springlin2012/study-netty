@@ -37,6 +37,7 @@ public class TimeClientHandler extends ChannelHandlerAdapter {
         firstMessage.writeBytes(req);
     }
 
+    /*
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         ctx.writeAndFlush(firstMessage);
@@ -51,6 +52,7 @@ public class TimeClientHandler extends ChannelHandlerAdapter {
         DateFormat df = new SimpleDateFormat("YYYY-MM-DD hh:ss");
         System.out.println("Now is:"+ df.parse(body).toString());
     }
+    */
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
