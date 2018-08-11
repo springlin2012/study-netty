@@ -62,7 +62,7 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
         );
         response.headers().set(
                 HttpHeaders.Names.CONTENT_TYPE,
-                "text/plain; charset=UTF-8");
+                "text/plain;charset=UTF-8");
         boolean keepAlive = HttpHeaders.isKeepAlive(request);
         if (keepAlive) { // 如果请求了 keep-alive,则添加所需要的HTTP头信息
             response.headers().set(
