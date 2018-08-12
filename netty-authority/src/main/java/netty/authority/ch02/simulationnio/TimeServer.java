@@ -6,7 +6,7 @@
  */
 package netty.authority.ch02.simulationnio;
 
-import com.study.netty.authority.ch02.bio.TimeServerHandler;
+import netty.authority.ch02.bio.TimeServerHandler;
 
 import java.io.IOException;
 import java.net.ServerSocket;

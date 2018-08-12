@@ -12,6 +12,10 @@
     <artifactId>netty.actual</artifactId>
     <packaging>jar</packaging>
 
+    <properties>
+        <echo-server.port>8080</echo-server.port>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>io.netty</groupId>
@@ -25,4 +29,32 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <!-- maven错误解决：编码GBK的不可映射字符 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>run-server</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>netty.actual.ch02.EchoServer</mainClass>
+                    <arguments>
+                        <argument>${echo-server.port}</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
